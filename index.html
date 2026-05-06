@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -163,6 +162,10 @@ body{
 }
 .day-chip .chip-date{font-size:10px;font-weight:700;display:block;opacity:0.75}
 .day-chip .chip-label{font-size:12px;font-weight:700;display:block;margin-top:1px;font-family:'Nunito',sans-serif}
+
+/* ── DAY CONTENT SHOW/HIDE ── */
+.day-content{display:none;animation:fadeUp 0.25s ease}
+.day-content.active{display:block}
 
 /* ── SECTION TITLE ── */
 .section-title{
@@ -1175,15 +1178,349 @@ body{
 </div>
 
 <!-- ══════════════ BOTTOM NAV ══════════════ -->
+<!-- ══════════════ PAGE: 美食 ══════════════ -->
+<div id="page-food" class="page">
+
+<style>
+.food-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:16px;scrollbar-width:none}
+.food-tabs::-webkit-scrollbar{display:none}
+.food-tab{flex-shrink:0;padding:7px 16px;border-radius:20px;border:2px solid var(--border);background:white;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;color:var(--text-sub);transition:all 0.2s}
+.food-tab.active{background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:white;border-color:transparent;box-shadow:0 3px 12px rgba(255,133,161,0.4)}
+.food-panel{display:none}
+.food-panel.active{display:block}
+.meal-section{margin-bottom:20px}
+.meal-label{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;color:var(--pink-deep);margin-bottom:10px;letter-spacing:0.5px}
+.meal-label::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--pink-mid),transparent);border-radius:2px}
+.restaurant-card{background:white;border-radius:var(--radius);padding:14px;margin-bottom:10px;border:1.5px solid var(--border);box-shadow:var(--shadow-sm);transition:transform 0.15s}
+.restaurant-card:active{transform:scale(0.98)}
+.rc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
+.rc-name{font-size:15px;font-weight:700;line-height:1.3;color:var(--text-main)}
+.rc-name-jp{font-size:11px;color:var(--text-light);display:block;margin-top:1px}
+.rc-price-badge{flex-shrink:0;background:var(--pink-light);color:var(--pink-deep);font-size:11px;font-weight:700;padding:4px 9px;border-radius:10px;white-space:nowrap}
+.rc-desc{font-size:12px;color:var(--text-sub);line-height:1.6;margin-bottom:8px}
+.rc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.rc-tag{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600}
+.rc-tag-pink{background:var(--pink-light);color:var(--pink-deep)}
+.rc-tag-mint{background:var(--mint-light);color:#2D7A60}
+.rc-tag-yellow{background:var(--yellow-light);color:#8B6500}
+.rc-tag-lav{background:var(--lavender-light);color:#5A30A0}
+.rc-hours{font-size:10px;color:var(--text-light);margin-bottom:6px}
+.kid-badge{display:inline-flex;align-items:center;gap:4px;background:#FFF0F4;border:1.5px solid var(--pink-mid);border-radius:10px;padding:3px 8px;font-size:10px;font-weight:700;color:var(--pink-deep);margin-bottom:8px}
+.map-btn-sm{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--pink-dark);text-decoration:none;border:1.5px solid var(--pink-mid);padding:5px 11px;border-radius:20px;background:var(--pink-light);transition:all 0.2s}
+.map-btn-sm:active{background:var(--pink-mid)}
+.convenience-box{background:linear-gradient(135deg,var(--yellow-light),#FFF8DC);border-radius:var(--radius);padding:14px;border:1.5px solid rgba(200,150,60,0.2);margin-bottom:12px}
+.convenience-box h4{font-size:13px;font-weight:700;color:#7A5020;margin-bottom:6px;font-family:'Nunito',sans-serif}
+.convenience-box p{font-size:12px;color:#8B6530;line-height:1.6}
+</style>
+
+<!-- 美食地區切換 -->
+<div class="food-tabs">
+  <button class="food-tab active" onclick="showFood('osaka',this)">🏯 大阪</button>
+  <button class="food-tab" onclick="showFood('nagoya',this)">🏯 名古屋</button>
+  <button class="food-tab" onclick="showFood('kids',this)">👶 帶小孩注意</button>
+</div>
+
+<!-- ── 大阪 ── -->
+<div id="food-osaka" class="food-panel active">
+
+  <div class="meal-section">
+    <div class="meal-label">☀️ 早餐</div>
+    
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">CASABLANCA Namba Riverside</div><span class="rc-name-jp">道頓堀河畔咖啡廳</span></div>
+        <span class="rc-price-badge">¥1,000~1,500</span>
+      </div>
+      <div class="kid-badge">👶 親子友善・空間寬敞</div>
+      <div class="rc-desc">評價極高 ⭐4.9，道頓堀河畔座位，Croissant＋咖啡套餐，推車可入・7:00開門・早起去剛好</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">河景座位</span>
+        <span class="rc-tag rc-tag-mint">7:00開門</span>
+        <span class="rc-tag rc-tag-yellow">5/12・5/14 推薦</span>
+      </div>
+      <div class="rc-hours">🕐 每日 07:00 - 00:00</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/casablanca-namba" target="_blank">📍 導航</a>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">便利商店 Morning</div><span class="rc-name-jp">7-11 / FamilyMart</span></div>
+        <span class="rc-price-badge">¥300~600</span>
+      </div>
+      <div class="rc-desc">USJ 當天（5/13）最推薦！飯糰＋牛奶＋三明治，帶走邊走邊吃，難波步行可見。日本便利商店品質遠超台灣</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-mint">即開即走</span>
+        <span class="rc-tag rc-tag-yellow">5/13 USJ日必備</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="meal-section">
+    <div class="meal-label">🌞 午餐</div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">Kadoya 食堂（海遊館旁）</div><span class="rc-name-jp">角屋食堂・大阪港</span></div>
+        <span class="rc-price-badge">¥800~1,200</span>
+      </div>
+      <div class="kid-badge">👶 家庭友善・附近大阪港站</div>
+      <div class="rc-desc">評價 ⭐4.3，海遊館步行3分鐘，天婦羅、丼飯選擇多，只收現金・11:00開門・適合參觀完海遊館後午餐</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">海遊館旁</span>
+        <span class="rc-tag rc-tag-yellow">現金only</span>
+        <span class="rc-tag rc-tag-mint">5/14 推薦</span>
+      </div>
+      <div class="rc-hours">🕐 11:00~15:00・16:30~21:00（週四公休）</div>
+      <a class="map-btn-sm" href="https://maps.google.com/?cid=4832891024753222510" target="_blank">📍 導航</a>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">串かつ だるま 新世界本店</div><span class="rc-name-jp">Kushikatsu Daruma</span></div>
+        <span class="rc-price-badge">¥1,500~2,500</span>
+      </div>
+      <div class="rc-desc">評價 ⭐4.1，大阪串炸發源地！新世界通天閣旁・10人需分批或提早去・10:30開門・二沾醬規矩要注意</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">大阪名物</span>
+        <span class="rc-tag rc-tag-lav">10人分批入座</span>
+        <span class="rc-tag rc-tag-yellow">5/14 推薦</span>
+      </div>
+      <div class="rc-hours">🕐 週三 10:30・其他 11:00 開門 ~ 22:30</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/Eb18HSRuSMvt55PJ6" target="_blank">📍 導航</a>
+    </div>
+  </div>
+
+  <div class="meal-section">
+    <div class="meal-label">🌙 晚餐</div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">鶴橋風月 道頓堀戎橋店</div><span class="rc-name-jp">Tsuruhashi Fugetsu</span></div>
+        <span class="rc-price-badge">¥1,500~2,000</span>
+      </div>
+      <div class="kid-badge">👶 適合帶小孩・鐵板現做</div>
+      <div class="rc-desc">道頓堀格力可對面3F，大阪燒鐵板現做・可看師傅料理過程・空間寬敞適合大桌・11:00~23:00</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">道頓堀必吃</span>
+        <span class="rc-tag rc-tag-mint">5/12・5/14 晚餐</span>
+      </div>
+      <div class="rc-hours">🕐 11:00 - 23:00 每日</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/tsuruhashi-dotonbori" target="_blank">📍 導航</a>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">金龍拉麵 道頓堀店</div><span class="rc-name-jp">Kinryu Ramen・24H</span></div>
+        <span class="rc-price-badge">¥800~1,000</span>
+      </div>
+      <div class="rc-desc">評價 ⭐3.8，24小時營業！豚骨湯頭・免費泡菜無限取・USJ回來的晚上或深夜肚子餓都方便・排隊快</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-yellow">24H營業</span>
+        <span class="rc-tag rc-tag-pink">¥800起超划算</span>
+        <span class="rc-tag rc-tag-mint">5/13 USJ後推薦</span>
+      </div>
+      <div class="rc-hours">🕐 24小時</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/kinryu-dotonbori" target="_blank">📍 導航</a>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">鳥貴族 難波店</div><span class="rc-name-jp">Torikizoku・居酒屋串燒</span></div>
+        <span class="rc-price-badge">¥1,500~2,000</span>
+      </div>
+      <div class="rc-desc">全品¥370均一價！串燒超划算，平板點餐有英文・適合帶孩子的輕鬆晚餐・注意部分門市室內可吸菸</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">均一價¥370</span>
+        <span class="rc-tag rc-tag-mint">平板英文點餐</span>
+      </div>
+      <div class="rc-hours">🕐 17:00 - 01:00</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/torikizoku-namba" target="_blank">📍 導航</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── 名古屋 ── -->
+<div id="food-nagoya" class="food-panel">
+
+  <div class="meal-section">
+    <div class="meal-label">☀️ 早餐・名古屋モーニング</div>
+
+    <div class="convenience-box">
+      <h4>☕ 名古屋 Morning 文化必體驗！</h4>
+      <p>點一杯咖啡（約¥500）就免費附：土司＋水煮蛋 or 紅豆醬（小倉あんトースト）。這是名古屋獨有的早餐文化，每天早上都值得去一次！</p>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">コメダ珈琲（Komeda's Coffee）</div><span class="rc-name-jp">名古屋發源・全市多間</span></div>
+        <span class="rc-price-badge">¥500~700</span>
+      </div>
+      <div class="kid-badge">👶 沙發座位・推車可入・空間大</div>
+      <div class="rc-desc">名古屋Morning文化代表！點咖啡送土司+蛋，小倉紅豆醬吐司是招牌・住宿附近找一間，7:00就開・5/15・5/16・5/17早餐首選</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">名古屋必體驗</span>
+        <span class="rc-tag rc-tag-mint">7:00開門</span>
+        <span class="rc-tag rc-tag-yellow">買咖啡送早餐</span>
+      </div>
+      <div class="rc-hours">🕐 07:00 - 22:00 每日</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/komeda-nagoya" target="_blank">📍 附近門市</a>
+    </div>
+  </div>
+
+  <div class="meal-section">
+    <div class="meal-label">🌞 午餐</div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">宮きしめん（熱田神宮境內）</div><span class="rc-name-jp">Miyakishimen・神宮内</span></div>
+        <span class="rc-price-badge">¥800~1,200</span>
+      </div>
+      <div class="kid-badge">👶 半露天・親子用餐舒適</div>
+      <div class="rc-desc">評價 ⭐4.2，熱田神宮境內半露天麵店・きしめん（平板烏龍麵）是名古屋名物・環境優美、氣氛好・有圖文菜單・5/16熱田神宮後直接在裡面吃</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">神宮境內</span>
+        <span class="rc-tag rc-tag-mint">名古屋名物</span>
+        <span class="rc-tag rc-tag-yellow">5/16 午餐首選</span>
+      </div>
+      <div class="rc-hours">🕐 09:00 - 16:30 每日</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/miyakishimen-atsuta" target="_blank">📍 導航</a>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">山本屋本店（味噌烏龍麵）</div><span class="rc-name-jp">Yamamotoya Honten</span></div>
+        <span class="rc-price-badge">¥1,500~2,000</span>
+      </div>
+      <div class="rc-desc">名古屋最正宗味噌煮烏龍麵・湯頭濃郁、麵硬Q有嚼勁（日本媽媽說小孩有時不適應硬麵）・名古屋站附近有分店・10人建議電話預約</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">名古屋名物</span>
+        <span class="rc-tag rc-tag-lav">麵硬，幼兒注意</span>
+        <span class="rc-tag rc-tag-yellow">5/15 午餐</span>
+      </div>
+      <div class="rc-hours">🕐 11:00 - 21:00</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/yamamotoya-nagoya" target="_blank">📍 導航</a>
+    </div>
+  </div>
+
+  <div class="meal-section">
+    <div class="meal-label">🌙 晚餐</div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">矢場とん 矢場町本店</div><span class="rc-name-jp">Yabaton・味噌カツ</span></div>
+        <span class="rc-price-badge">¥1,500~2,500</span>
+      </div>
+      <div class="kid-badge">👶 家庭席・幼兒餐椅有</div>
+      <div class="rc-desc">評價 ⭐4.1，名古屋最知名味噌豬排！豚カツ炸得酥脆，淋上濃郁八丁味噌醬・本店門口豬豬看板必拍・5/15晚餐首選・建議提前訂位</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">名古屋第一名物</span>
+        <span class="rc-tag rc-tag-yellow">5/15 晚餐</span>
+        <span class="rc-tag rc-tag-mint">提前訂位</span>
+      </div>
+      <div class="rc-hours">🕐 11:00 - 21:00 每日</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/8eHmyKPZ3V8r7Mux8" target="_blank">📍 導航</a>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">世界の山ちゃん（手羽先）</div><span class="rc-name-jp">Sekai no Yamachan</span></div>
+        <span class="rc-price-badge">¥1,500~2,000</span>
+      </div>
+      <div class="rc-desc">評價 ⭐3.6，名古屋招牌辣味炸雞翅・祕傳香辣粉超上癮・幼兒注意辣度（可請店家少加辣粉）・名古屋市區多家分店・5/16晚餐推薦</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-pink">名古屋名物</span>
+        <span class="rc-tag rc-tag-lav">辣，幼兒少辣</span>
+        <span class="rc-tag rc-tag-yellow">5/16 晚餐</span>
+      </div>
+      <div class="rc-hours">🕐 17:00 - 00:15 每日</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/yamachan-nagoya" target="_blank">📍 導航</a>
+    </div>
+
+    <div class="restaurant-card">
+      <div class="rc-top">
+        <div><div class="rc-name">矢場とん 名古屋站 エスカ店</div><span class="rc-name-jp">返程最後一餐</span></div>
+        <span class="rc-price-badge">¥1,500~2,000</span>
+      </div>
+      <div class="rc-desc">5/17 返台前・名古屋站地下街エスカ內・不用特地跑去矢場町・吃完直接搭近鐵出發・方便！</div>
+      <div class="rc-tags">
+        <span class="rc-tag rc-tag-mint">名古屋站内</span>
+        <span class="rc-tag rc-tag-yellow">5/17 最後午餐</span>
+      </div>
+      <div class="rc-hours">🕐 11:00 - 21:00</div>
+      <a class="map-btn-sm" href="https://maps.app.goo.gl/yabaton-esca-nagoya" target="_blank">📍 導航</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── 帶小孩注意 ── -->
+<div id="food-kids" class="food-panel">
+
+  <div class="info-card" style="margin-bottom:12px">
+    <div class="info-card-header">
+      <div class="info-card-icon pink">🍱</div>
+      <div><div class="info-card-title">帶2歲5歲用餐守則</div></div>
+    </div>
+    <ul class="info-list">
+      <li>日本多數餐廳有兒童餐椅（ベビーチェア），入座時主動問店員「ベビーチェアありますか？」</li>
+      <li>推車通常可以折疊後放旁邊，或停在入口處</li>
+      <li>11:30前或13:30後進餐廳，避開尖峰等待時間長</li>
+      <li>10人團體用餐，建議先打電話訂位（じゃらん App 或直撥）</li>
+      <li>日本餐廳多數禁菸（居酒屋例外），帶小孩選一般食堂較安心</li>
+      <li>幼兒適合：丼飯類・烏龍麵・大阪燒（軟・不辣）</li>
+      <li>幼兒注意：味噌烏龍麵（麵硬）・台灣拉麵（辣）・串炸沾醬（鹹）</li>
+    </ul>
+  </div>
+
+  <div class="info-card" style="margin-bottom:12px">
+    <div class="info-card-header">
+      <div class="info-card-icon yellow">🏪</div>
+      <div><div class="info-card-title">便利商店・超市備用清單</div></div>
+    </div>
+    <ul class="info-list">
+      <li>幼兒早餐備用：ベビーせんべい（嬰兒米餅）・野菜ジュース（蔬菜汁）</li>
+      <li>點心備用：ハッピーターン・小餅乾・果凍包（日本超市多）</li>
+      <li>緊急餐點：稻荷壽司・茶碗蒸・日式軟麵包（兩歲好入口）</li>
+      <li>大阪：難波周邊 7-11、FamilyMart 徒步可到</li>
+      <li>名古屋：住宿附近太閤通有多家便利商店</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-header">
+      <div class="info-card-icon mint">💰</div>
+      <div><div class="info-card-title">每日餐費估算（一家四口）</div></div>
+    </div>
+    <ul class="info-list">
+      <li>早餐：¥600~1,500（便利商店 or 咖啡廳）</li>
+      <li>午餐：¥2,000~4,000（一般食堂 or 麵店）</li>
+      <li>晚餐：¥3,000~6,000（名物餐廳 or 居酒屋）</li>
+      <li>零食小吃：¥500~1,000</li>
+      <li>每日餐費合計：¥6,000~12,000/家四口</li>
+      <li>小孩通常吃大人的一部份，不需另點兒童餐也OK</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function showFood(id, btn) {
+  document.querySelectorAll('.food-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.food-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('food-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</div>
+
 <nav class="bottom-nav">
   <button class="nav-btn active" onclick="showPage('itinerary',this)">
     <span class="nav-icon">🗓️</span>行程
   </button>
+  <button class="nav-btn" onclick="showPage('food',this)">
+    <span class="nav-icon">🍜</span>美食
+  </button>
   <button class="nav-btn" onclick="showPage('transport',this)">
     <span class="nav-icon">🚄</span>交通
-  </button>
-  <button class="nav-btn" onclick="showPage('hotel',this)">
-    <span class="nav-icon">🏨</span>住宿
   </button>
   <button class="nav-btn" onclick="showPage('bag',this)">
     <span class="nav-icon">🧳</span>行李
