@@ -167,6 +167,42 @@ body{
 .day-content{display:none;animation:fadeUp 0.25s ease}
 .day-content.active{display:block}
 
+/* ── WEATHER BAR ── */
+.weather-bar{
+  background:linear-gradient(135deg,#E8F4FF 0%,#F0E8FF 100%);
+  border-radius:var(--radius);border:1.5px solid #D0E8FF;
+  padding:14px;margin-bottom:14px;
+}
+.weather-bar-title{font-size:13px;font-weight:900;font-family:'Nunito',sans-serif;color:#3060A0;margin-bottom:10px}
+.weather-scroll{
+  display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-bottom:10px;
+}
+.weather-scroll::-webkit-scrollbar{display:none}
+.weather-card{
+  flex-shrink:0;background:white;border-radius:14px;
+  padding:10px 10px;text-align:center;min-width:72px;
+  border:1.5px solid #D8EEFF;box-shadow:0 2px 8px rgba(100,160,255,0.1);
+}
+.wc-move{background:linear-gradient(135deg,#FFF5E8,#FFE8F5);border-color:#FFCCE0}
+.wc-date{font-size:11px;font-weight:700;color:#4060A0;line-height:1.3;margin-bottom:4px}
+.wc-day{font-size:9px;font-weight:500;color:#8090B0}
+.wc-icon{font-size:24px;margin:4px 0}
+.wc-city{font-size:9px;color:#8090B0;margin-bottom:4px;font-weight:600}
+.wc-temp{display:flex;justify-content:center;gap:4px;margin-bottom:3px}
+.wc-hi{font-size:13px;font-weight:900;color:#E05050}
+.wc-lo{font-size:13px;font-weight:700;color:#5080C0}
+.wc-desc{font-size:9px;color:#7090B0;font-weight:600}
+.weather-note{
+  font-size:11px;color:#7050A0;line-height:1.6;
+  background:rgba(180,150,255,0.1);border-radius:8px;padding:7px 10px;margin-bottom:8px;
+}
+.weather-tips{display:flex;flex-wrap:wrap;gap:5px}
+.wtip{
+  font-size:10px;font-weight:700;padding:4px 9px;border-radius:20px;
+  background:white;border:1.5px solid #C8DEFF;color:#4060A0;
+}
+
 /* ── SECTION TITLE ── */
 .section-title{
   font-size:12px;font-weight:900;
@@ -448,6 +484,63 @@ body{
 
 <!-- ══════════════ PAGE: 行程 ══════════════ -->
 <div id="page-itinerary" class="page active">
+
+  <!-- 天氣預覽 -->
+  <div class="weather-bar">
+    <div class="weather-bar-title">🌤️ 5月大阪・名古屋 天氣預覽</div>
+    <div class="weather-scroll">
+      <div class="weather-card">
+        <div class="wc-date">5/12<br><span class="wc-day">二</span></div>
+        <div class="wc-icon">⛅</div>
+        <div class="wc-city">大阪</div>
+        <div class="wc-temp"><span class="wc-hi">27°</span><span class="wc-lo">19°</span></div>
+        <div class="wc-desc">多雲</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-date">5/13<br><span class="wc-day">三</span></div>
+        <div class="wc-icon">☀️</div>
+        <div class="wc-city">大阪</div>
+        <div class="wc-temp"><span class="wc-hi">28°</span><span class="wc-lo">20°</span></div>
+        <div class="wc-desc">晴天</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-date">5/14<br><span class="wc-day">四</span></div>
+        <div class="wc-icon">🌤️</div>
+        <div class="wc-city">大阪</div>
+        <div class="wc-temp"><span class="wc-hi">27°</span><span class="wc-lo">19°</span></div>
+        <div class="wc-desc">晴時多雲</div>
+      </div>
+      <div class="weather-card wc-move">
+        <div class="wc-date">5/15<br><span class="wc-day">五</span></div>
+        <div class="wc-icon">🌥️</div>
+        <div class="wc-city">移動日</div>
+        <div class="wc-temp"><span class="wc-hi">26°</span><span class="wc-lo">18°</span></div>
+        <div class="wc-desc">多雲</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-date">5/16<br><span class="wc-day">六</span></div>
+        <div class="wc-icon">☀️</div>
+        <div class="wc-city">名古屋</div>
+        <div class="wc-temp"><span class="wc-hi">27°</span><span class="wc-lo">18°</span></div>
+        <div class="wc-desc">晴天</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-date">5/17<br><span class="wc-day">日</span></div>
+        <div class="wc-icon">🌤️</div>
+        <div class="wc-city">名古屋</div>
+        <div class="wc-temp"><span class="wc-hi">26°</span><span class="wc-lo">18°</span></div>
+        <div class="wc-desc">晴時多雲</div>
+      </div>
+    </div>
+    <div class="weather-note">⚠️ 5月為日本梅雨前期，建議每天出門前確認當日天氣。平均降雨機率約15~25%，折疊雨衣必備！</div>
+    <div class="weather-tips">
+      <span class="wtip">🌡️ 日均溫約 22~28°C</span>
+      <span class="wtip">🌂 折疊雨衣必備</span>
+      <span class="wtip">🧴 防曬 SPF50+</span>
+      <span class="wtip">💧 補水瓶隨身帶</span>
+    </div>
+  </div>
+
   <div class="day-scroll" id="dayScroll">
     <div class="day-chip active" onclick="showDay(0,this)">
       <span class="chip-date">5/12</span>
@@ -505,7 +598,7 @@ body{
           <div class="tl-time">20:15</div>
           <div class="tl-name">關西機場 → 難波（南海ラピート）</div>
           <div class="tl-desc">約38分・¥1,450/大人・2歲5歲免費・推車可帶上月台・約21:00抵難波</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/KQf1sTfNH6Y2cUXc7" target="_blank">📍 南海難波站</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Nankai+Namba+Station+Osaka" target="_blank">📍 南海難波站</a>
         </div>
       </div>
       <div class="tl-item">
@@ -522,7 +615,7 @@ body{
           <div class="tl-time">22:00 入住</div>
           <div class="tl-name">A.A.O BLDG. NAMBA（大阪）</div>
           <div class="tl-desc">Naniwa-ku, Motomachi 2-4-13・距難波站步行約5分鐘</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/nGPAfTb9fT9bpRXt5" target="_blank">📍 住宿導航</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=2-4-13+Motomachi+Naniwa+Osaka" target="_blank">📍 住宿導航</a>
         </div>
       </div>
     </div>
@@ -563,7 +656,7 @@ body{
             <span class="badge badge-gold">5歲 ¥6,300+</span>
             <span class="badge badge-green">2歲 免費</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/XeLVg9DgAGARqlIy2" target="_blank">📍 USJ 導航</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Universal+Studios+Japan+Osaka" target="_blank">📍 USJ 導航</a>
         </div>
       </div>
       <div class="tl-item">
@@ -588,7 +681,7 @@ body{
           <div class="tl-time">18:30</div>
           <div class="tl-name">道頓堀周邊晚餐</div>
           <div class="tl-desc">就近輕食・黑門市場串燒或章魚燒</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/vJBhTHRnFCAo2grS8" target="_blank">📍 道頓堀</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka" target="_blank">📍 道頓堀</a>
         </div>
       </div>
     </div>
@@ -627,7 +720,7 @@ body{
             <span class="badge badge-gold">5歲 ¥1,400</span>
             <span class="badge badge-green">2歲 免費</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/zakNjPToAGARzCwI" target="_blank">📍 海遊館導航</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Kaiyukan+Osaka+Aquarium" target="_blank">📍 海遊館導航</a>
         </div>
       </div>
       <div class="tl-item">
@@ -636,7 +729,7 @@ body{
           <div class="tl-time">13:00 ～ 14:30</div>
           <div class="tl-name">新世界午餐・串炸 だるま</div>
           <div class="tl-desc">地鐵中央線→本町→御堂筋線→動物園前站・新世界名物串炸・人均¥1,500~2,500</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/Eb18HSRuSMvt55PJ6" target="_blank">📍 だるま本店</a>
+          <a class="map-btn" href="https://www.google.com/maps/place/?q=place_id:ChIJ5V4HCWDnAGARd6bIaaK91O4" target="_blank">📍 だるま本店</a>
         </div>
       </div>
       <div class="tl-item">
@@ -649,7 +742,7 @@ body{
             <span class="badge badge-green">16樓免費</span>
             <span class="badge badge-blue">60樓展望 ¥2,000（選購）</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/3mI_DdAGARJyFcpA" target="_blank">📍 Harukas 導航</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Abeno+Harukas+Osaka" target="_blank">📍 Harukas 導航</a>
         </div>
       </div>
       <div class="tl-item">
@@ -658,7 +751,7 @@ body{
           <div class="tl-time">18:00 ～ 20:00</div>
           <div class="tl-name">道頓堀晚餐</div>
           <div class="tl-desc">天王寺→なんば 地鐵7分・10人建議分2桌・推薦鶴橋風月大阪燒・飯後拍格力可跑步人夜景</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/vJBhTHRnFCAo2grS8" target="_blank">📍 道頓堀</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Dotonbori+Osaka" target="_blank">📍 道頓堀</a>
         </div>
       </div>
     </div>
@@ -697,7 +790,7 @@ body{
             <span class="badge badge-gold">5歲 ¥3,340</span>
             <span class="badge badge-green">2歲 免費</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/Sc4SbDnkAGARz3YQ" target="_blank">📍 新大阪站</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Shin-Osaka+Station" target="_blank">📍 新大阪站</a>
         </div>
       </div>
       <div class="tl-item">
@@ -706,7 +799,7 @@ body{
           <div class="tl-time">09:05 ～ 09:25</div>
           <div class="tl-name">名古屋站 → 東山公園（東山線）</div>
           <div class="tl-desc">名古屋市營地下鐵東山線・約15分・¥270/大人・步行3分至動物園</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/lzZ2EK96A2ARotw0" target="_blank">📍 東山公園站</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Higashiyama-koen+Station+Nagoya" target="_blank">📍 東山公園站</a>
         </div>
       </div>
       <div class="tl-item">
@@ -719,7 +812,7 @@ body{
             <span class="badge badge-blue">成人 ¥500</span>
             <span class="badge badge-green">小孩 免費</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/t7ZD20plA2ARbRV7" target="_blank">📍 東山動植物園</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Higashiyama+Zoo+Nagoya" target="_blank">📍 東山動植物園</a>
         </div>
       </div>
       <div class="tl-item">
@@ -728,7 +821,7 @@ body{
           <div class="tl-time">13:00 ～ 14:30</div>
           <div class="tl-name">午餐・山本屋本店（味噌烏龍麵）</div>
           <div class="tl-desc">名古屋最正宗味噌烏龍麵・人均¥1,500~2,000・10人建議電話預約</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/QrNmXk7eBJaqcqyRA" target="_blank">📍 山本屋本店</a>
+          <a class="map-btn" href="https://www.google.com/maps/place/?q=place_id:ChIJ27OLKmV3A2AR7zZtJx0sIgk" target="_blank">📍 山本屋本店</a>
         </div>
       </div>
       <div class="tl-item">
@@ -741,7 +834,7 @@ body{
             <span class="badge badge-blue">成人 ¥500</span>
             <span class="badge badge-green">小孩 免費</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/se-wx8t2A2ARd6Z1" target="_blank">📍 名古屋城</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Nagoya+Castle" target="_blank">📍 名古屋城</a>
         </div>
       </div>
       <div class="tl-item">
@@ -750,7 +843,7 @@ body{
           <div class="tl-time">18:30</div>
           <div class="tl-name">晚餐・矢場とん（味噌豬排）</div>
           <div class="tl-desc">名古屋最知名味噌カツ・人均¥1,500~2,000・建議提前訂位</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/8eHmyKPZ3V8r7Mux8" target="_blank">📍 矢場とん本店</a>
+          <a class="map-btn" href="https://www.google.com/maps/place/?q=place_id:ChIJeUhI_NNxA2ARSBP5UM663A0" target="_blank">📍 矢場とん本店</a>
         </div>
       </div>
       <div class="tl-item">
@@ -796,7 +889,7 @@ body{
           <div class="badges">
             <span class="badge badge-green">入場完全免費</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/3abhnht6A2ARu-Y4y" target="_blank">📍 熱田神宮</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Atsuta+Jingu+Nagoya" target="_blank">📍 熱田神宮</a>
         </div>
       </div>
       <div class="tl-item">
@@ -822,7 +915,7 @@ body{
             <span class="badge badge-blue">阿卡將 嬰幼兒專區</span>
             <span class="badge badge-green">兩家同一棟一次逛完</span>
           </div>
-          <a class="map-btn" href="https://maps.google.com/?q=AEON+MALL+Nagoya+Dome+Mae" target="_blank">📍 AEON MALL 導航</a>
+          <a class="map-btn" href="https://www.google.com/maps/place/?q=place_id:ChIJbfRbSlRwA2ARKE-YBjHo-v0" target="_blank">📍 AEON MALL 導航</a>
         </div>
       </div>
       <div class="tl-item">
@@ -831,7 +924,7 @@ body{
           <div class="tl-time">18:00</div>
           <div class="tl-name">晚餐・世界の山ちゃん（手羽先）</div>
           <div class="tl-desc">名古屋名物辣味雞翅・人均¥1,500~2,000・注意辣度（小孩）</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/yamachan-nagoya" target="_blank">📍 世界の山ちゃん</a>
+          <a class="map-btn" href="https://www.google.com/maps/place/?q=place_id:ChIJ1wVuatVwA2ARreALCT8-scQ" target="_blank">📍 世界の山ちゃん</a>
         </div>
       </div>
       <div class="tl-item">
@@ -873,7 +966,7 @@ body{
           <div class="tl-time">10:00 ～ 13:00</div>
           <div class="tl-name">上午彈性・名古屋站伴手禮</div>
           <div class="tl-desc">名古屋必買：坂角えびせんべい・兩口堂ういろ・名古屋コーチン雞相關零食・名古屋站地下街「エスカ」集中購物</div>
-          <a class="map-btn" href="https://maps.app.goo.gl/M38S9N12A2ARZenfX" target="_blank">📍 近鐵名古屋站</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Kintetsu+Nagoya+Station" target="_blank">📍 近鐵名古屋站</a>
         </div>
       </div>
       <div class="tl-item">
@@ -894,7 +987,7 @@ body{
             <span class="badge badge-blue">近鐵+南海 ¥6,380×2 = ¥12,760</span>
             <span class="badge badge-green">小孩 免費</span>
           </div>
-          <a class="map-btn" href="https://maps.app.goo.gl/kintetsu-nagoya" target="_blank">📍 近鐵名古屋站</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Kintetsu+Nagoya+Station" target="_blank">📍 近鐵名古屋站</a>
         </div>
       </div>
       <div class="tl-item">
@@ -950,7 +1043,7 @@ body{
       <div class="transport-meta-item"><div class="transport-meta-label">小孩</div><div class="transport-meta-val">免費</div></div>
     </div>
     <div class="transport-note">5/12 抵達・5/17 返程均使用・推車可上月台・電梯完善</div>
-    <a class="map-btn" href="https://maps.app.goo.gl/KQf1sTfNH6Y2cUXc7" target="_blank">📍 南海難波站</a>
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Nankai+Namba+Station+Osaka" target="_blank">📍 南海難波站</a>
   </div>
 
   <div class="transport-card-big">
@@ -979,7 +1072,7 @@ body{
       <div class="transport-meta-item"><div class="transport-meta-label">5歲</div><div class="transport-meta-val">¥3,340</div></div>
     </div>
     <div class="transport-note">5/15・08:00発・10人指定席需提前訂位！2歲免費膝上</div>
-    <a class="map-btn" href="https://maps.app.goo.gl/Sc4SbDnkAGARz3YQ" target="_blank">📍 新大阪站</a>
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Shin-Osaka+Station" target="_blank">📍 新大阪站</a>
   </div>
 
   <div class="transport-card-big">
@@ -994,7 +1087,7 @@ body{
       <div class="transport-meta-item"><div class="transport-meta-label">小孩</div><div class="transport-meta-val">免費</div></div>
     </div>
     <div class="transport-note">5/17 返程・近鐵ひのとり（名古屋→難波¥4,930）+南海ラピート（¥1,450）・14:30出發才來得及</div>
-    <a class="map-btn" href="https://maps.app.goo.gl/M38S9N12A2ARZenfX" target="_blank">📍 近鐵名古屋站</a>
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Kintetsu+Nagoya+Station" target="_blank">📍 近鐵名古屋站</a>
   </div>
 
   <div class="section-title">名古屋地下鐵</div>
@@ -1025,7 +1118,7 @@ body{
         <span class="badge badge-pink">距難波站步行5分</span>
         <span class="badge badge-blue">道頓堀徒步圈</span>
       </div>
-      <a class="map-btn" href="https://maps.app.goo.gl/nGPAfTb9fT9bpRXt5" target="_blank">📍 開啟導航</a>
+      <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=2-4-13+Motomachi+Naniwa+Osaka" target="_blank">📍 開啟導航</a>
     </div>
   </div>
 
@@ -1239,7 +1332,7 @@ body{
         <span class="rc-tag rc-tag-yellow">5/12・5/14 推薦</span>
       </div>
       <div class="rc-hours">🕐 每日 07:00 - 00:00</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/casablanca-namba" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/search/?api=1&query=CASABLANCA+NAMBA+RIVERSIDE+COFFEE+Osaka" target="_blank">📍 導航</a>
     </div>
 
     <div class="restaurant-card">
@@ -1271,7 +1364,7 @@ body{
         <span class="rc-tag rc-tag-mint">5/14 推薦</span>
       </div>
       <div class="rc-hours">🕐 11:00~15:00・16:30~21:00（週四公休）</div>
-      <a class="map-btn-sm" href="https://maps.google.com/?cid=4832891024753222510" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/place/?q=place_id:ChIJfXJG8oroAGARbmAUYSVCPEk" target="_blank">📍 導航</a>
     </div>
 
     <div class="restaurant-card">
@@ -1286,7 +1379,7 @@ body{
         <span class="rc-tag rc-tag-yellow">5/14 推薦</span>
       </div>
       <div class="rc-hours">🕐 週三 10:30・其他 11:00 開門 ~ 22:30</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/Eb18HSRuSMvt55PJ6" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/place/?q=place_id:ChIJ5V4HCWDnAGARd6bIaaK91O4" target="_blank">📍 導航</a>
     </div>
   </div>
 
@@ -1305,7 +1398,7 @@ body{
         <span class="rc-tag rc-tag-mint">5/12・5/14 晚餐</span>
       </div>
       <div class="rc-hours">🕐 11:00 - 23:00 每日</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/tsuruhashi-dotonbori" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/search/?api=1&query=Tsuruhashi+Fugetsu+Dotonbori+Osaka" target="_blank">📍 導航</a>
     </div>
 
     <div class="restaurant-card">
@@ -1320,7 +1413,7 @@ body{
         <span class="rc-tag rc-tag-mint">5/13 USJ後推薦</span>
       </div>
       <div class="rc-hours">🕐 24小時</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/kinryu-dotonbori" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/search/?api=1&query=Kinryu+Ramen+Dotonbori+Osaka" target="_blank">📍 導航</a>
     </div>
 
     <div class="restaurant-card">
@@ -1334,7 +1427,7 @@ body{
         <span class="rc-tag rc-tag-mint">平板英文點餐</span>
       </div>
       <div class="rc-hours">🕐 17:00 - 01:00</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/torikizoku-namba" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/search/?api=1&query=Torikizoku+Namba+Osaka" target="_blank">📍 導航</a>
     </div>
   </div>
 </div>
@@ -1363,7 +1456,7 @@ body{
         <span class="rc-tag rc-tag-yellow">買咖啡送早餐</span>
       </div>
       <div class="rc-hours">🕐 07:00 - 22:00 每日</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/komeda-nagoya" target="_blank">📍 附近門市</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/search/?api=1&query=Komeda+Coffee+Taikodori+Nagoya" target="_blank">📍 附近門市</a>
     </div>
   </div>
 
@@ -1383,7 +1476,7 @@ body{
         <span class="rc-tag rc-tag-yellow">5/16 午餐首選</span>
       </div>
       <div class="rc-hours">🕐 09:00 - 16:30 每日</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/miyakishimen-atsuta" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/place/?q=place_id:ChIJ-c22cxl6A2ARx4gE5g3fNxI" target="_blank">📍 導航</a>
     </div>
 
     <div class="restaurant-card">
@@ -1398,7 +1491,7 @@ body{
         <span class="rc-tag rc-tag-yellow">5/15 午餐</span>
       </div>
       <div class="rc-hours">🕐 11:00 - 21:00</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/yamamotoya-nagoya" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/place/?q=place_id:ChIJsQBnHtVwA2ARy9BLlKyKvtI" target="_blank">📍 導航</a>
     </div>
   </div>
 
@@ -1418,7 +1511,7 @@ body{
         <span class="rc-tag rc-tag-mint">提前訂位</span>
       </div>
       <div class="rc-hours">🕐 11:00 - 21:00 每日</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/8eHmyKPZ3V8r7Mux8" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/place/?q=place_id:ChIJeUhI_NNxA2ARSBP5UM663A0" target="_blank">📍 導航</a>
     </div>
 
     <div class="restaurant-card">
@@ -1433,7 +1526,7 @@ body{
         <span class="rc-tag rc-tag-yellow">5/16 晚餐</span>
       </div>
       <div class="rc-hours">🕐 17:00 - 00:15 每日</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/yamachan-nagoya" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/place/?q=place_id:ChIJ1wVuatVwA2ARreALCT8-scQ" target="_blank">📍 導航</a>
     </div>
 
     <div class="restaurant-card">
@@ -1447,7 +1540,7 @@ body{
         <span class="rc-tag rc-tag-yellow">5/17 最後午餐</span>
       </div>
       <div class="rc-hours">🕐 11:00 - 21:00</div>
-      <a class="map-btn-sm" href="https://maps.app.goo.gl/yabaton-esca-nagoya" target="_blank">📍 導航</a>
+      <a class="map-btn-sm" href="https://www.google.com/maps/place/?q=place_id:ChIJYyopnNNwA2AR8nlMWWtpTXI" target="_blank">📍 導航</a>
     </div>
   </div>
 </div>
